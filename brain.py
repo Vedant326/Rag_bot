@@ -9,7 +9,7 @@ from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores.faiss import FAISS
 from pypdf import PdfReader
-#import faiss
+import faiss
 
 
 def parse_pdf(file: BytesIO, filename: str) -> Tuple[List[str], str]:
