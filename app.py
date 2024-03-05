@@ -11,8 +11,17 @@ import os
 st.title("RAG enhanced Chatbot")
 
 # Set up the OpenAI API key from databutton secrets
-os.environ["OPENAI_API_KEY"] = st.secrets.get("OPENAI_API_KEY")
-openai.api_key = st.secrets.get("OPENAI_API_KEY")
+# os.environ["OPENAI_API_KEY"] = st.secrets.get("OPENAI_API_KEY")
+# openai.api_key = st.secrets.get("OPENAI_API_KEY")
+# Set up the OpenAI API key from Streamlit secrets
+api_key = st.secrets.get("OPENAI_API_KEY")
+if api_key is not None:
+    os.environ["OPENAI_API_KEY"] = str(api_key)
+    openai.api_key = str(api_key)
+else:
+    st.error("Failed to retrieve the OpenAI API key from secrets.")
+    # Handle the case where the secret key is not found or is None
+
 
 
 # Cached function to create a vectordb for the provided PDF files
